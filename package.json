@@ -18,10 +18,12 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "@asymmetrik/ngx-leaflet": "^14.0.1",
+    "@asymmetrik/ngx-leaflet": "^13.0.2",
     "@googlemaps/js-api-loader": "^1.14.3",
+    "core-js": "^3.8.3",
     "leaflet": "^1.9.2",
     "leaflet-geosearch": "^3.7.0",
+    "leaflet-timedimension": "^1.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

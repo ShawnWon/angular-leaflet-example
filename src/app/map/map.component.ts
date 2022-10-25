@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { Map, Control, DomUtil, ZoomAnimEvent , Layer, marker, icon, MapOptions, tileLayer, latLng } from 'leaflet';
-import { Loader } from '@googlemaps/js-api-loader';
+import * as L from "leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+
+import 'leaflet-timedimension';
 
 @Component({
 
@@ -9,40 +10,36 @@ selector: 'app-map',
 templateUrl: './map.component.html',
 styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, OnDestroy {
+export class MapComponent {
 
-@Output() map$: EventEmitter<Map> = new EventEmitter;
 
-@Output() zoom$: EventEmitter<number> = new EventEmitter;
-@Input() options: MapOptions= {
-layers:[tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+options= {
+layers:[L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 opacity: 0.7,
 maxZoom: 19,
 detectRetina: true,
 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 })],
-zoom:10,
-center:latLng(1.3521,103.8198)
+zoom:14,
+fullscreenControl: true,
+timeDimensionControl: true,
+timeDimensionControlOptions: {
+  timeSliderDragUpdate: true,
+  loopButton: true,
+  autoPlay: true,
+  playerOptions: {
+    transitionTime: 1000,
+    loop: true
+  }
+},
+timeDimension: true,
+center: L.latLng(1.3521,103.8189)
 };
-public map: Map;
-public zoom: number;
 
-constructor() { }
 
-ngOnInit(): void {
+onMapReady(map: L.Map) {
 
-}
 
-ngOnDestroy() {
-
-this.map.clearAllEventListeners;
-this.map.remove();
-};
-onMapReady(map: Map) {
-this.map = map;
-this.map$.emit(map);
-this.zoom = map.getZoom();
-this.zoom$.emit(this.zoom);
 
 const provider = new OpenStreetMapProvider();
 
