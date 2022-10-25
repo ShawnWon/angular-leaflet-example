@@ -22,7 +22,6 @@ detectRetina: true,
 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 })],
 zoom:15,
-fullscreenControl: true,
 timeDimensionControl: true,
 timeDimensionControlOptions: {
   timeSliderDragUpdate: true,
